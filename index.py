@@ -25,5 +25,5 @@ def close_connection(exception):
 
 @app.route("/", methods=["POST", "GET"])
 def accueil():
-    if request.method == GET:
-        return render_template()
+    if request.method == "GET":
+        return render_template("layout.html")
