@@ -1,24 +1,34 @@
 class Declaration :
-    def __init__(self, noDeclaration, dateDeclaration, dateInspVispre,
-                nbrExtermin, dateDebutTrait, dateFinTrait, noQr, nomQr, nomArr,
-                coorX, coorY, long, lat):
-        self.noDeclaration = noDeclaration
-        self.dateDeclaration = dateDeclaration
-        self.dateInspVispre = dateInspVispre
-        self.nbrExtermin = nbrExtermin
-        self.dateDebutTrait = dateDebutTrait
-        self.dateFinTrait = dateFinTrait
-        self.noQr = noQr;
-        self.nomQr = nomQr;
-        self.nomArr = nomArr;
-        self.coorX = coorX;
-        self.coorY = coorY;
-        self.long = long;
-        self.lat = lat;
+    def __init__(self, no_declaration, date_declaration, date_insp_vispre,
+                nbr_extermin, date_debut_trait, date_fin_trait, no_qr, nom_qr, nom_arr,
+                coord_x, coord_y, longitude, latitude):
+        self.no_declaration = no_declaration
+        self.date_declaration = date_declaration
+        self.date_insp_vispre = date_insp_vispre
+        self.nbr_extermin = nbr_extermin
+        self.date_debut_trait = date_debut_trait
+        self.date_fin_trait = date_fin_trait
+        self.no_qr = no_qr;
+        self.nom_qr = nom_qr;
+        self.nom_arr = nom_arr;
+        self.coord_x = coord_x;
+        self.coord_y = coord_y;
+        self.longitude = longitude;
+        self.latitude = latitude;
 
 
-    def build_dictionary(self):
-        return {"NO_DECLARATION": self.noDeclaration, "DATE_DECLARATION": self.dateDeclaration, "DATE_INSP_VISPRE": self.dateInspVispre,
-                "NBR_EXTERMIN": self.nbrExtermin, "DATE_DEBUTTRAIT": self.dateDebutTrait, "DATE_FINTRAIT": self.dateFinTrait,
-                "No_QR": self.noQr, "NOM_QR": self.nomQr, "NOM_ARROND": self.nomArr, "COORD_X": self.coorX,
-                "COORD_Y": self.coorY, "LONGITUDE": self.long, "LATITUDE": self.lat}
+    def build_dictionary_all(self):
+        return {
+                "no_declaration": self.no_declaration,
+                "date_declaration": self.date_declaration,
+                "date_insp_vispre": self.date_insp_vispre,
+                "nbr_extermin": self.nbr_extermin,
+                "date_debut_trait": self.date_debut_trait,
+                "date_fin_trait": self.date_fin_trait,
+                "no_qr": self.no_qr,
+                "nom_qr": self.nom_qr,
+                "nom_arr": self.nom_arr,
+                "coord_x": self.coord_x,
+                "coord_y": self.coord_y,
+                "longitude": self.longitude,
+                "latitude": self.latitude}

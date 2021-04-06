@@ -29,15 +29,32 @@
                         <div class="col-auto">
                             <button class="btn-lg btn-secondary" type="submit">Chercher</button>
                         </div>
-
                     </div>
                 </form>
-            </div>
-            {%if error%}
-                <div class="col-12 col-md-10 col-lg-8">
+                {%if error%}
                     <span id="error">{{error}}</span>
+                {%endif%}
+                <br>
+                <div id="formulaire_dates">
+                    <h3>Chercher par dates</h3>
+                    <form>
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <label for="floatingInputGrid">Date début</label>
+                                    <input type="text" class="form-control" id="date_debut" placeholder="YYYY-MM-DD">
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <label for="floatingInputGrid">Date fin</label>
+                                    <input type="text" class="form-control" id="date_fin" placeholder="YYYY-MM-DD">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-secondary btn-sm" center>Envoyer</button>
+                    </form>
                 </div>
-            {%endif%}
             </div>
         </div>
     </div>

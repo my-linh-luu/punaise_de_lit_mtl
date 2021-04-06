@@ -1,51 +1,37 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <title>Extermination de punaises Montréal</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-  </head>
-  <body> 
-    <table class="table table-striped" width="100%">
-        <tr>
-            <th>No déclaration</th>
-            <th>Date déclaration</th>
-            <th>Date inspection préalable</th>
-            <th>Nbr extermination</th>
-            <th>Date début traitement</th>
-            <th>Date fin traitement</th>
-            <th>No quartier</th>
-            <th>Nom quartier</th>
-            <th>Nom arrondissement</th>
-            <th>Coordonnée X</th>
-            <th>Coordonnée Y</th>
-            <th>Longitude</th>
-            <th>Latitude</th>
-        </tr>
-        <tr>
-            {% for declaration in recherche %}
-            <tr>
-                <td>{{declaration.noDeclaration}}</td>
-                <td>{{declaration.dateDeclaration}}</td>
-                <td>{{declaration.dateInspVispre}}</td>
-                <td>{{declaration.nbrExtermin}}</td>
-                <td>{{declaration.dateDebutTrait}}</td>
-                <td>{{declaration.dateFinTrait}}</td>
-                <td>{{declaration.noQr}}</td>
-                <td>{{declaration.nomQr}}</td>
-                <td>{{declaration.nomArr}}</td>
-                <td>{{declaration.coorX}}</td>
-                <td>{{declaration.coorY}}</td>
-                <td>{{declaration.long}}</td>
-                <td>{{declaration.lat}}</td>
-            </tr>
-            {% endfor %}
-    </table>
-  </body>
-</html>
+{%extends "layout.html" %}
+{%block content%}
+  <tr>
+      <th>No déclaration</th>
+      <th>Date déclaration</th>
+      <th>Date inspection préalable</th>
+      <th>Nbr extermination</th>
+      <th>Date début traitement</th>
+      <th>Date fin traitement</th>
+      <th>No quartier</th>
+      <th>Nom quartier</th>
+      <th>Nom arrondissement</th>
+      <th>Coordonnée X</th>
+      <th>Coordonnée Y</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+  </tr>
+  <tr>
+      {% for declaration in recherche %}
+      <tr>
+          <td>{{declaration.no_declaration}}</td>
+          <td>{{declaration.date_declaration}}</td>
+          <td>{{declaration.date_insp_vispre}}</td>
+          <td>{{declaration.nbr_extermin}}</td>
+          <td>{{declaration.date_debut_trait}}</td>
+          <td>{{declaration.date_fin_trait}}</td>
+          <td>{{declaration.no_qr}}</td>
+          <td>{{declaration.nom_qr}}</td>
+          <td>{{declaration.nom_arr}}</td>
+          <td>{{declaration.coord_x}}</td>
+          <td>{{declaration.coord_y}}</td>
+          <td>{{declaration.longitude}}</td>
+          <td>{{declaration.latitude}}</td>
+      </tr>
+      {% endfor %}
+  </tr>
+{% endblock %}

@@ -1,0 +1,54 @@
+#%RAML 1.0
+title: RAML pour le projet final en INF5190 (extermination punaises de lit)
+baseUri: http://127.0.0.1:5000
+version: 1.0
+mediaType: "application/json"
+types:
+    ExistingDeclaration: 
+        properties:
+            no_declaration:
+                type: number
+                required: true
+            date_declaration: 
+                type: string
+                required: true
+            date_insp_vispre: 
+                type: string
+                required: true
+            nbr_extermin:
+                type: number
+                required: true
+            date_debut_trait:
+                type: string
+                required: true
+            date_fin_trait:
+                type: string 
+                required: true
+            no_qr: 
+                type: string  
+                required: true
+            nom_qr:   
+                type: string
+                required: true
+            coord_x: 
+                type: number
+                required: true
+            coord_y: 
+                type: number
+                required: true
+            longitude: 
+                type: number
+                required: true
+            latitude: 
+                type: number
+                required: true
+            
+    /api:
+        /declarations_by_dates:
+            get: 
+                description: Extract the data of every declarations between 2 dates
+                reponses:
+                    200:
+                        body:
+                            application/json:
+                                type: ExistingDeclaration[]
