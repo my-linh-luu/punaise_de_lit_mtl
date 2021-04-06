@@ -1,2 +1,2 @@
-*.DS_Store*
+static/pictures/.DS_Store
 __pycache__*

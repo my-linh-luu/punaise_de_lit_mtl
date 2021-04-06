@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Extermination de punaises Montréal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  </head>
+  <body> 
+      <div class="container">
+	    <div class="row justify-content-center">
+            <img src="../static/pictures/2119.jpg" class="img-fluid" alt="bestioles" >
+            <div class="col-12 col-md-10 col-lg-8">
+                <h1>Extermination punaises de lit à Montréal</h1>
+                <form class="card card-sm" method="post" action="/">
+                    <div class="card-body row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fas fa-search h4 text-body"></i>
+                        </div>
+                        <div class="col">
+                            <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Chercher par nom de quartier ou par arrondissement"
+                            name="recherche" value="{{ request.form['recherche'] }}">
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn-lg btn-secondary" type="submit">Chercher</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            {%if error%}
+                <div class="col-12 col-md-10 col-lg-8">
+                    <span id="error">{{error}}</span>
+                </div>
+            {%endif%}
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
