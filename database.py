@@ -1,12 +1,6 @@
 from re import split
 import sqlite3
-
-
-def build_dictionary(row):
-    return {"NO_DECLARATION": row[0], "DATE_DECLARATION": row[1], "DATE_INSP_VISPRE": row[2],
-            "NBR_EXTERMIN": row[3], "DATE_DEBUTTRAIT": row[4], "DATE_FINTRAIT": row[5],
-            "No_QR": row[6], "NOM_QR": row[7], "NOM_ARROND": row[8], "COORD_X": row[9],
-            "COORD_Y": row[10], "LONGITUDE": row[11], "LATITUDE": row[12] }
+from .declaration import Declaration
 
 class Database:
     def __init__(self):
@@ -26,5 +20,7 @@ class Database:
         cursor = self.get_connection().cursor()
         cursor.execute(
             ("select * from data where NOM_QR like ? or NOM_ARROND like ?"), ("%"+nom+"%", "%"+nom+"%",))  # like permet de faire une recherche case insensitive
-        results = cursor.fetchall()
-        return [build_dictionary(row) for row in results]
+        declarations = cursor.fetchall()
+        return [Declaration(declaration[0], declaration[1], declaration[2], declaration[3], declaration[4], declaration[5],
+                            declaration[6], declaration[7], declaration[8], declaration[9], declaration[10], declaration[11],
+                            declaration[12]) for declaration in declarations]

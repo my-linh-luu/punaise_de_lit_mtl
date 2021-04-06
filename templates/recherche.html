@@ -29,24 +29,23 @@
             <th>Latitude</th>
         </tr>
         <tr>
-            {% for row in recherche %}
+            {% for declaration in recherche %}
             <tr>
-                <td>{{row.NO_DECLARATION}}</td>
-                <td>{{row.DATE_DECLARATION}}</td>
-                <td>{{row.DATE_INSP_VISPRE}}</td>
-                <td>{{row.NBR_EXTERMIN}}</td>
-                <td>{{row.DATE_DEBUTTRAIT}}</td>
-                <td>{{row.DATE_FINTRAIT}}</td>
-                <td>{{row.No_QR}}</td>
-                <td>{{row.NOM_QR}}</td>
-                <td>{{row.NOM_ARROND}}</td>
-                <td>{{row.COORD_X}}</td>
-                <td>{{row.COORD_Y}}</td>
-                <td>{{row.LONGITUDE}}</td>
-                <td>{{row.LATITUDE}}</td>
+                <td>{{declaration.noDeclaration}}</td>
+                <td>{{declaration.dateDeclaration}}</td>
+                <td>{{declaration.dateInspVispre}}</td>
+                <td>{{declaration.nbrExtermin}}</td>
+                <td>{{declaration.dateDebutTrait}}</td>
+                <td>{{declaration.dateFinTrait}}</td>
+                <td>{{declaration.noQr}}</td>
+                <td>{{declaration.nomQr}}</td>
+                <td>{{declaration.nomArr}}</td>
+                <td>{{declaration.coorX}}</td>
+                <td>{{declaration.coorY}}</td>
+                <td>{{declaration.long}}</td>
+                <td>{{declaration.lat}}</td>
             </tr>
             {% endfor %}
-        </tr>
     </table>
   </body>
 </html>

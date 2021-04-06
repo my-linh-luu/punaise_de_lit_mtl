@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, redirect, make_response, g
 from flask.helpers import url_for
-from .database import Database
 import sqlite3
 import pandas as pd
 import requests
 from io import StringIO
 from apscheduler.schedulers.background import BackgroundScheduler
+
+from .database import Database
+from .declaration import Declaration
 # import re
 # import datetime
 # from datetime import date
