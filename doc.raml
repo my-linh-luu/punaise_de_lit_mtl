@@ -4,7 +4,7 @@ baseUri: http://127.0.0.1:5000
 version: 1.0
 mediaType: "application/json"
 types:
-    ExistingDeclaration: 
+    DeclarationExistante: 
         properties:
             no_declaration:
                 type: number
@@ -42,13 +42,21 @@ types:
             latitude: 
                 type: number
                 required: true
+
+    /declarations:
+        get: 
+            
             
     /api:
-        /declarations_by_dates:
-            get: 
-                description: Extract the data of every declarations between 2 dates
-                reponses:
-                    200:
-                        body:
-                            application/json:
-                                type: ExistingDeclaration[]
+        /declarations:
+            /{date_debut}:
+                /{date_fin}:
+                    get: 
+                        description: Extraire toutes les informations des déclarations ayant été faites entre deux dates
+                        reponses:
+                            200:
+                                body:
+                                    application/json:
+                                        type: DeclarationExistante[]
+                            400: 
+                                description: Le format des dates est invalides

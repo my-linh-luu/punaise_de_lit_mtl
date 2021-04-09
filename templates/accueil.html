@@ -1,62 +1,60 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <title>Extermination de punaises Montréal</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-  </head>
-  <body> 
-      <div class="container">
-	    <div class="row justify-content-center">
-            <img src="../static/pictures/insects.jpg" class="img-fluid" alt="bestioles" >
-            <h1>Extermination punaises de lit</h1>
-            <div class="col-12 col-md-10 col-lg-8">
-                <form class="card card-sm" method="post" action="/">
-                    <div class="card-body row no-gutters align-items-center">
-                        <div class="col-auto">
-                            <i class="fas fa-search h4 text-body"></i>
-                        </div>
-                        <div class="col">
-                            <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Chercher par nom de quartier ou par arrondissement"
-                            name="recherche" value="{{ request.form['recherche'] }}">
-                        </div>
-                        <div class="col-auto">
-                            <button class="btn-lg btn-secondary" type="submit">Chercher</button>
-                        </div>
-                    </div>
-                </form>
-                {%if error%}
-                    <span id="error">{{error}}</span>
-                {%endif%}
-                <br>
-                <div id="formulaire_dates">
-                    <h3>Chercher par dates</h3>
-                    <form>
-                        <div class="row g-2">
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <label for="floatingInputGrid">Date début</label>
-                                    <input type="text" class="form-control" id="date_debut" placeholder="YYYY-MM-DD">
-                                </div>
-                            </div>
-                            <div class="col-md">
-                                <div class="form-floating">
-                                    <label for="floatingInputGrid">Date fin</label>
-                                    <input type="text" class="form-control" id="date_fin" placeholder="YYYY-MM-DD">
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-secondary btn-sm" center>Envoyer</button>
-                    </form>
+{%extends "layout.html" %}
+{%block content%}
+<div class="row justify-content-center">
+    <h1>Extermination punaises de lit</h1>
+    <div class="col-12 col-md-10 col-lg-8">
+        <form class="card card-sm" method="post" action="/">
+            <div class="card-body row no-gutters align-items-center">
+                <div class="col-auto">
+                    <i class="fas fa-search h4 text-body"></i>
+                </div>
+                <div class="col">
+                    <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Chercher par nom de quartier ou par arrondissement"
+                    name="recherche" value="{{ request.form['recherche'] }}">
+                </div>
+                <div class="col-auto">
+                    <button class="btn-lg btn-secondary" type="submit">Chercher</button>
                 </div>
             </div>
+        </form>
+        {%if error%}
+            <span id="error">{{error}}</span>
+        {%endif%}
+        <br>
+        <div id="formulaire_dates">
+            <h3>Chercher par dates</h3>
+            <div class="col text-center"><span id="error_date"></span></div>
+            <form>
+                <div class="row g-4">
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <label for="floatingInputGrid">Date début</label>
+                            <input type="text" class="form-control" id="date_debut" placeholder="YYYY-MM-DD">
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <label for="floatingInputGrid">Date fin</label>
+                            <input type="text" class="form-control" id="date_fin" placeholder="YYYY-MM-DD">
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <label for="floatingInputGrid">Quartier</label>
+                            <select id="quartiers" class="form-control"><option value="Aucune">Aucune</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row h-150">
+                    <div class="col text-center">
+                        <button class="btn-sm btn-secondary" type="button" onclick="chercherParDates();">Chercher</button>
+                    </div>
+                </div>
+            </form>
         </div>
+        <div id="content"></div>
     </div>
-  </body>
-</html>
+</div>
+{% endblock %}
+            

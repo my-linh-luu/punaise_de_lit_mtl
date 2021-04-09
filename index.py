@@ -73,21 +73,33 @@ def accueil():
             else:
                 return redirect(url_for('get_declarations_by_nomqr_nomarr', recherche=recherche))
 
-
 @app.route("/resultats/<recherche>")
 def get_declarations_by_nomqr_nomarr(recherche):
     resultats = get_db().get_all_by_nom_qr_or_nom_arr(
         recherche)  # on retrouve les donnees
     return render_template("recherche.html", recherche=resultats)
 
-
-@app.route("/api/declarations", methods=["GET"])
-def get_declarations_by_dates():
-    declarations = get_db().get_all_in_between_dates(
-        '2013-01-01', '2014-01-01')  # a changer
+@app.route("/api/declarations/<date_debut>/<date_fin>", methods=["GET"])
+def liste_declarations_par_dates(date_debut, date_fin):
+    declarations = get_db().get_all_in_between_dates(date_debut, date_fin)
     return jsonify([declaration.build_dictionary_all() for declaration in declarations])
 
 
-# def entre_date():
-#     resultats = get_db().get_all_in_between_dates('2011-01-01', '2012-12-01')
-#     return render_template("recherche.html", recherche = resultats)
+@app.route("/declarations", methods=["GET"])
+def get_declarations_by_dates():
+        dateDebut = request.args.get('du')
+        dateFin = request.args.get('au')
+        resultats = []
+        declarations = get_db().get_all_in_between_dates(
+            dateDebut, dateFin)
+        for declaration in declarations:
+            compte = get_db().get_nbr_declaration_par_quartier(declaration.nom_qr, dateDebut, dateFin)
+            resultats.append({"nom_arr": declaration.nom_arr, "nom_qr": declaration.nom_qr, "nbr_declarations_pour_qr":compte})
+        return render_template("recherche_date.html", resultats=resultats)
+
+# @app.route("api/declaration/<nom_qr>", methods=["GET"])
+# def 
+
+
+
+
