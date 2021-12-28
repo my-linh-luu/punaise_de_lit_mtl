@@ -1,60 +1,89 @@
 {%extends "layout.html" %}
 {%block content%}
-<div class="row justify-content-center">
-    <h1>Extermination punaises de lit</h1>
-    <div class="col-12 col-md-10 col-lg-8">
-        <form class="card card-sm" method="post" action="/">
-            <div class="card-body row no-gutters align-items-center">
-                <div class="col-auto">
-                    <i class="fas fa-search h4 text-body"></i>
-                </div>
-                <div class="col">
-                    <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Chercher par nom de quartier ou par arrondissement"
-                    name="recherche" value="{{ request.form['recherche'] }}">
-                </div>
-                <div class="col-auto">
-                    <button class="btn-lg btn-secondary" type="submit">Chercher</button>
-                </div>
-            </div>
-        </form>
-        {%if error%}
-            <span id="error">{{error}}</span>
-        {%endif%}
-        <br>
-        <div id="formulaire_dates">
-            <h3>Chercher par dates</h3>
-            <div class="col text-center"><span id="error_date"></span></div>
-            <form>
-                <div class="row g-4">
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <label for="floatingInputGrid">Date début</label>
-                            <input type="text" class="form-control" id="date_debut" placeholder="YYYY-MM-DD">
-                        </div>
+    {%if session %}
+        <nav class="navbar navbar-light navbar-expand-lg">
+        <div class="container-fluid">
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/declaration">Faire une déclaration</a></li>
+                <li><a href="/modification">Modifier les quartiers à surveiller</a> </li>
+                <li><a href="/upload_photo">Ajouter une photo de profil</a></li>
+                <li><a href="/logout">Se déconnecter</a></li>
+            </ul>
+        </div>
+    </nav>
+    {% else %}
+    <nav class="navbar navbar-light navbar-expand-lg">
+        <div class="container-fluid">
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/declaration">Faire une déclaration</a></li>
+          <li ><a href="/login">Se connecter</a></li>
+        </ul>
+        </div>
+    </nav>
+    {% endif %}
+    <div class="row justify-content-center">
+        <div class="col-12"><h1>Extermination punaises de lit</h1></div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 form_container">
+            <form class="card card-sm" method="post" action="/">
+                <div class="card-body row no-gutters align-items-center">
+                    <div class="col-auto">
+                        <i class="fas fa-search h4 text-body"></i>
                     </div>
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <label for="floatingInputGrid">Date fin</label>
-                            <input type="text" class="form-control" id="date_fin" placeholder="YYYY-MM-DD">
-                        </div>
+                    <div class="col">
+                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Chercher par nom de quartier ou par arrondissement"
+                        name="recherche" value="{{ request.form['recherche'] }}">
                     </div>
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <label for="floatingInputGrid">Quartier</label>
-                            <select id="quartiers" class="form-control"><option value="Aucune">Aucune</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row h-150">
-                    <div class="col text-center">
-                        <button class="btn-sm btn-secondary" type="button" onclick="chercherParDates();">Chercher</button>
+                    <div class="col-auto">
+                        <button class="btn-lg btn-success" type="submit">Rechercher</button>
                     </div>
                 </div>
             </form>
+            {%if error%}
+                <span>{{error}}</span>
+            {%endif%}
+            <br>
+            <div id="formulaire_dates">
+                <h3>Effectuer une recherche par dates et quartier</h3><hr>
+                <div class="col text-center" id="message"></div>
+                <span id="error_date"></span>
+                <form>
+                    <div class="row g-3">
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <label for="date_debut">Du : </label>
+                                <input type="text" class="form-control" id="date_debut" placeholder="YYYY-MM-DD">
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <label for="date_fin">Au :</label>
+                                <input type="text" class="form-control" id="date_fin" placeholder="YYYY-MM-DD">
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <label for="quartier">Quartier : </label>
+                                <select id="quartier" class="form-control">
+                                    <option value="tous">Tous les quartiers</option>
+                                    {% for quartier in quartiers %}
+                                        <option value="{{quartier}}">{{quartier}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group justify-content-center d-flex" role="group" aria-label="Basic mixed styles example">
+                        <button type="button" class="btn btn-outline-success mt-4 mr-3" id="rechercher_qr" onclick="chercherParDates();">Rechercher</button>
+                        <button type="button" class="btn btn-outline-danger mt-4 mr-3" id="supprimer_qr" onclick="supprimerDeclarationParQuartier();">Supprimer</button>
+                    </div>
+                </form>
+            </div>
+            <div id="content"></div>
         </div>
-        <div id="content"></div>
     </div>
-</div>
 {% endblock %}
             

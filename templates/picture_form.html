@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+    <nav class="navbar navbar-light navbar-expand-lg">
+        <div class="container-fluid">
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/declaration">Faire une déclaration</a></li>
+                <li><a href="/modification">Modifier les quartiers à surveiller</a> </li>
+                <li><a href="/upload_photo">Ajouter une photo de profil</a></li>
+                <li><a href="/logout">Se déconnecter</a></li>
+            </ul>
+        </div>
+    </nav>
+     <div class="row justify-content-center">
+         <div class="col-lg-10 text-center">
+            <h1>Ajouter une photo de profil</h1><hr>
+        </div>
+     </div>
+        <div class="row justify-content-center">
+         <div class="col-lg-10 text-center">
+            {%if error%}
+                <span>{{error}}</span>
+            {%endif%}
+        </div>
+     </div>
+     {% if picture_id %}
+    <div class="row justify-content-center">
+        <div class="col-lg-10 text-center">
+            <table>
+                <tr>
+                    <td><img src="/image/{{ picture_id }}.png" alt="photo_de_profil"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+    <form action="/upload_photo" method="POST" enctype="multipart/form-data">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <input type="file" class="form-control" name="photo" accept=".png, .jpeg, .jpg">
+            </div>
+        </div><br>
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <button type="submit" class="btn btn-outline-primary mx-auto d-block">Soumettre</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

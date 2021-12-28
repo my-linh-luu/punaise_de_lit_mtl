@@ -1,47 +1,49 @@
 declaration_insert_schema = {
     'type': 'object',
-    'required': ['no_declaration', 'date_declaration', 'date_insp_vispre', 'nbr_extermin',
-                 'date_debut_trait', 'date_fin_trait','nom_qr', 'nom_arr', 'coord_x', 
-                 'coord_y', 'longitude', 'latitude'],
+    'required': ['quartier', 'arrondissement', 'adresse', 'dateVisite', 'nom',
+                 'prenom', 'description'],
     'properties': {
-        'no_declaration': {
-            'type': 'number'
-        },
-        'date_declaration': {
-            'type': 'date'
-        },
-        'date_insp_vispre': {
-            'type': 'date'
-        },
-        'nbr_extermin': {
-            'type': 'number'
-        },
-        'date_debut_trait': {
-            'type': 'date'
-        },
-        'date_fin_trait': {
-            'type': 'date'
-        },
-        'no_qr': {
+        'quartier': {
             'type': 'string'
         },
-        'nom_qr': {
+        'arrondissement': {
             'type': 'string'
         },
-        'nom_arr': {
+        'adresse': {
+            'type':'string'
+        },
+        'dateVisite': {
             'type': 'string'
         },
-        'coord_x': {
-            'type': 'number'
+        'nom': {
+            'type': 'string'
         },
-        'coord_y': {
-            'type': 'number'
+        'prenom': {
+            'type': 'string'
         },
-        'longitude': {
-            'type': 'number'
+        'description': {
+            'type': 'string'
+        }
+    },
+    'additionalProperties': False
+}
+
+user_insert_schema = {
+    'type': 'object',
+    'required': ['utilisateur', 'courriel', 'quartiers_a_surveiller',
+                 'mot_de_passe'],
+    'properties': {
+        'utilisateur': {
+            'type': 'string'
         },
-        'latitude': {
-            'type': 'number'
+        'courriel': {
+            'type': 'string'
+        },
+        'quartiers_a_surveiller': {
+            'type': 'string'
+        },
+        'mot_de_passe': {
+            'type': 'string'
         }
     },
     'additionalProperties': False

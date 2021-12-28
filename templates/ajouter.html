@@ -1,0 +1,94 @@
+{% extends "layout.html"%}
+{% block content %}
+    {%if session %}
+        <nav class="navbar navbar-light navbar-expand-lg">
+            <div class="container-fluid">
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/declaration">Faire une déclaration</a></li>
+                    <li><a href="/modification">Modifier les quartiers à surveiller</a></li>
+                    <li><a href="/upload_photo">Ajouter une photo de profil</a></li>
+                    <li><a href="/logout">Se déconnecter</a></li>
+                </ul>
+            </div>
+        </nav>
+    {% else %}
+        <nav class="navbar navbar-light navbar-expand-lg">
+            <div class="container-fluid">
+                <ul>
+                  <li><a href="/">Accueil</a></li>
+                  <li><a href="/declaration">Faire une déclaration</a></li>
+                  <li ><a href="/login">Se connecter</a></li>
+                </ul>
+            </div>
+        </nav>
+    {% endif %}
+    <div class="row justify-content-center">
+        <div class="row g-3">
+            <h1>Effectuer une déclaration</h1>
+        </div>
+    </div>
+    {% if error %}
+        <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 form_container">
+            <span>{{ error }}</span>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8 form_container">
+            <div class="col text-center"><span id="error_declarant"></span></div>
+        </div>
+    </div>
+    <form>
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <label for="nom_quartier" class="form-label">Nom du quartier</label>
+                <select id="nom_quartier" class="form-control">
+                    {% for quartier in quartiers %}
+                        <option value="{{quartier}}">{{quartier}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-5">
+                <label for="nom_arrondissement" class="form-label">Nom de l'arrondissement</label>
+                <select id="nom_arrondissement" class="form-control">
+                    {% for arrondissement in arrondissements %}
+                        <option value="{{arrondissement}}">{{arrondissement}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div><br>
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <label for="adresse" class="form-label">Addresse</label>
+                <input type="text" class="form-control" id="adresse" name="adresse" placeholder="ex: 1234 Boulevard Viau">
+            </div>
+            <div class="col-md-5">
+                <label for="date_visite" class="form-label">Date de la visite de l'exterminateur</label>
+                <input type="text" class="form-control" id="date_visite" name="date_visite" placeholder="YYYY-MM-DD">
+            </div>
+        </div><br>
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <label for="nom" class="form-label">Nom du résident</label>
+                <input type="text" class="form-control" id="nom" name="nom">
+            </div>
+            <div class="col-md-5">
+                <label for="prenom" class="form-label">Prénom du résident</label>
+                <input type="text" class="form-control" id="prenom" name="prenom">
+            </div>
+        </div><br>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <label for="description" class="form-label">Description du problème</label><br>
+                <textarea id="description" name="description" cols="300" rows="7"></textarea>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 btn-toolbar">
+                <button type="button" class="btn btn-outline-primary mx-auto d-block" onclick="verifierInfoDeclarant();">Envoyer la déclaration</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

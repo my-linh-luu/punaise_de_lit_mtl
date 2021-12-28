@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+    <nav class="navbar navbar-light navbar-expand-lg">
+        <div class="container-fluid">
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/declaration">Faire une déclaration</a></li>
+          <li ><a href="/login">Se connecter</a></li>
+        </ul>
+        </div>
+    </nav>
+    <div class="row justify-content-center">
+        <div class="row g-1">
+            <h1>Nouvel utilisateur</h1>
+        </div>
+    </div><br>
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <span id="error_user"></span>
+            {%if error%}
+                <span>{{error}}</span>
+            {%endif%}
+        </div>
+    </div>
+    <form method="post" action="/new_user" id="user_form">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="form-floating">
+                    <label for="new_username">Nom d'utilisateur: </label>
+                    <input type="text" class="form-control" id="new_username">
+                </div>
+            </div>
+        </div><br>
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="form-floating">
+                <label for="new_password">Mot de passe: </label>
+                <input type="password" class="form-control" id="new_password">
+            </div>
+        </div>
+    </div><br>
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="form-floating">
+                <label for="new_email">Adresse courriel: </label>
+                <input type="email" class="form-control" id="new_email">
+            </div>
+        </div>
+    </div><br>
+    <div class="row justify-content-center">
+         <div class="col-md-5">
+            <div class="form-floating">
+                <label for="multiple_select_quartier">Quartiers à surveiller:</label>
+                <select id="multiple_select_quartier" class="form-control form-select" multiple>
+                    {% for quartier in quartiers %}
+                        <option value="{{quartier}}">{{quartier}}</option>
+                    {% endfor %}
+                </select>
+                <p id="ctrl_comments">( Maintenir Ctrl ou Command pour sélectionner plusieurs quartiers )</p>
+            </div>
+        </div>
+    </div>
+    </form>
+    <div class="row justify-content-center">
+        <div class="col-12 btn-toolbar">
+            <button type="button" class="btn btn-outline-primary mx-auto d-block" onclick="return validate_user();">S'inscrire</button>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+    <nav class="navbar navbar-light navbar-expand-lg">
+        <div class="container-fluid">
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/declaration">Faire une déclaration</a></li>
+                <li><a href="/modification">Modifier les quartiers à surveiller</a> </li>
+                <li><a href="/upload_photo">Ajouter une photo de profil</a></li>
+                <li><a href="/logout">Se déconnecter</a></li>
+            </ul>
+        </div>
+    </nav>
+     <div class="row justify-content-center">
+         <div class="col-lg-10 text-center">
+            <h1>Modifier les quartiers à surveiller </h1><hr>
+        </div>
+     </div>
+    <div class="row justify-content-center">
+         <div class="col-lg-10 text-center">
+            <span id="error_quartier"></span>
+        </div>
+     </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6"><p class="profil">Nom d'utilisateur : {{ username }}</p></div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6"><p class="profil">Quartiers surveillés : {{ quartiers_surveilles }}</p></div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+        <form action="/modification" method="POST" enctype="multipart/form-data">
+            <div class="form-floating">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="checkbox" id="checkbox_disable_quartier" onclick="enable_select()">
+                    <label for="multiple_select_quartier">Changer les quartiers à surveiller</label>
+                </div>
+            </div>
+                <select id="multiple_select_quartier" class="form-control form-select" name="multiple_quartiers" multiple disabled >
+                    {% for quartier in quartiers %}
+                        <option value="{{quartier}}">{{quartier}}</option>
+                    {% endfor %}
+                </select>
+                <p id="ctrl_comments">( Maintenir Ctrl ou Command pour sélectionner plusieurs quartiers )</p>
+            </div>
+        <button type="button" onclick="return changer_quartiers_a_surveiller();" class="btn btn-outline-primary mx-auto d-block">Changer</button>
+        </form>
+        </div>
+    </div>
+{% endblock %}

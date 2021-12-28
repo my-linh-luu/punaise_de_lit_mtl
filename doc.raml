@@ -1,62 +1,266 @@
 #%RAML 1.0
 title: RAML pour le projet final en INF5190 (extermination punaises de lit)
-baseUri: http://127.0.0.1:5000
-version: 1.0
-mediaType: "application/json"
+baseUri: http://127.0.0.1:5000/
+mediaType: application/json
 types:
-    DeclarationExistante: 
-        properties:
-            no_declaration:
-                type: number
-                required: true
-            date_declaration: 
-                type: string
-                required: true
-            date_insp_vispre: 
-                type: string
-                required: true
-            nbr_extermin:
-                type: number
-                required: true
-            date_debut_trait:
-                type: string
-                required: true
-            date_fin_trait:
-                type: string 
-                required: true
-            no_qr: 
-                type: string  
-                required: true
-            nom_qr:   
-                type: string
-                required: true
-            coord_x: 
-                type: number
-                required: true
-            coord_y: 
-                type: number
-                required: true
-            longitude: 
-                type: number
-                required: true
-            latitude: 
-                type: number
-                required: true
+  DeclarationVilleExistante:
+    properties:
+      id:
+        type: number
+        required: true
+      no_declaration:
+        type: string
+        required: true
+      date_declaration:
+        type: string
+        required: true
+      date_insp_vispre: 
+        type: string
+        required: true
+      nbr_extermin:
+        type: number
+        required: true
+      date_debut_trait: 
+        type: string
+        required: true
+      date_fin_trait:
+        type: string
+        required: true
+      no_qr: 
+        type: string
+        required: true
+      nom_arr:     
+        type: string
+        required: true
+      coord_x: 
+        type: number
+        required: true
+      coord_y: 
+        type: number
+        required: true
+      longitude: 
+        type: number
+        required: true
+      latitude:
+        type: number
+        required: true
+  DeclarationsParQuartiers:
+    properties:
+      nom du quartier:
+        type: string
+        required: true
+      nombre de declarations:
+        type: number
+        required: true
+  NouvelleDeclarationInterne:
+    properties:
+      quartier:
+        type: string
+        required: true
+      arrondissement:
+        type: string
+        required: true
+      adresse:
+        type: string
+        required: true
+      dateVisite:
+        type: string
+        required: true
+      nom:
+        type: string
+        required: true
+      prenom:
+        type: string
+        required: true
+      description:
+        type: string
+        required: true
+  DeclarationInterneExistante:
+    properties:
+      id:
+        type: number
+        required: true
+      quartier:
+        type: string
+        required: true
+      arrondissement:
+        type: string
+        required: true
+      adresse:
+        type: string
+        required: true
+      dateVisite:
+        type: string
+        required: true
+      nom:
+        type: string
+        required: true
+      prenom:
+        type: string
+        required: true
+      description:
+        type: string
+        required: true
+  NouvelUtilisateur:
+    properties:
+      utilisateur:
+        type: string
+        required: true
+      courriel:
+        type: string
+        required: true
+      quartiers_a_surveiller:
+        type: string
+        description: Une liste des quartiers à surveillés séparés par des virgules.
+        required: true
+      mot_de_passe:
+        type: string
+        required: true
+  UtilisateurExistant:
+    properties:
+      id:
+        type: number
+        required: true
+      utilisateur:
+        type: string
+        required: true
+      hashed_password:
+        type: string
+        description: Le mot de passe de l'utilisateur qui a été haché avec son salt.
+        required: true
+      courriel:
+        type: string
+        required: true
+      quartiers_a_surveiller:
+        type: string
+        required: true
+      salt:
+        type: string
+        description: Une chaîne de caractère aléatoire générée par le programme.
+        required: true
+      pic_id:
+        type: string
+        description: L'identifiant pour la photo ajoutée par l'utilisateur. Initialement null lors de la création de l'utilisateur.
+        required: true
+/api:
+  /declarations:
+    get:
+      description: Obtenir toutes les informations des déclarations de la ville déclarées entre deux dates.
+      responses:
+        200:
+          body:
+            application/json:
+              type: DeclarationVilleExistante[]
+      queryParameters:
+        du:
+          description: Date de début de la recherche des déclarations.
+          type: date-only
+          example: 2015-05-20
+          required: true
+        au:
+          description: Date de fin de la recherche des déclarations.
+          type: date-only 
+          example: 2016-01-02
+          required: true
+    delete:
+      description: Supprimer toutes les déclarations de la ville déclarées entre deux dates et provenant d'un quartier spécifié.
+      responses:
+        200:
+          description: Les déclarations ont été supprimées avec succès.
+        404:
+          description: Ils n'existent pas de déclarations pour ce quartier entre ces dates.
+      queryParameters:
+        du:
+          description: Date de début de la recherche des déclarations.
+          type: date-only
+          example: 2015-05-20
+          required: true
+        au:
+          description: Date de fin de la recherche des déclarations.
+          type: date-only
+          example: 2016-01-02
+          required: true
+        quartier:
+          description: Nom du quartier dans lequel il faut supprimer les déclarations.
+          type: string
+          example: Est
+          required: true
+    /quartier:
+      get:
+        description: Obtenir tous les quartiers en ordre décroissant du nombre de déclarations dans ce quartier.
+        responses:
+          200:
+            body:
+              application/json:
+                type: DeclarationsParQuartiers
+                example:
+                  nom du quartier: Maisonneuve
+                  nombre de declarations: 1385
 
-    /declarations:
-        get: 
-            
-            
-    /api:
-        /declarations:
-            /{date_debut}:
-                /{date_fin}:
-                    get: 
-                        description: Extraire toutes les informations des déclarations ayant été faites entre deux dates
-                        reponses:
-                            200:
-                                body:
-                                    application/json:
-                                        type: DeclarationExistante[]
-                            400: 
-                                description: Le format des dates est invalides
+  /declaration:
+    post:
+      description: Ajouter une déclaration à l'interne.
+      body:
+        application/json:
+          type: NouvelleDeclarationInterne
+          example:
+              quartier: Beaurivage
+              arrondissement: Mercier–Hochelaga-Maisonneuve
+              adresse: 5454 avenue Papineau
+              dateVisite: 2019-01-05
+              nom: Serge
+              prenom: Gagnon
+              description: Il y a des trous partout!
+      responses:
+        201:
+          description: La déclaration a été créée avec succès.
+          body:
+            application/json:
+              type: DeclarationInterneExistante
+              example:
+                id: 4
+                quartier: Beaurivage
+                arrondissement: Mercier–Hochelaga-Maisonneuve
+                adresse: 5454 avenue Papineau
+                dateVisite: 2019-01-05
+                nom: Serge
+                prenom: Gagnon
+                description: Il y a des trous partout!
+
+    /{id}:
+      delete:
+        description: Supprimer une déclaration à l'interne spécifiée par l'identifiant.
+        responses:
+          200:
+            description: La déclaration a été supprimée avec succès.
+          404:
+            description: L'identifiant spécifié n'existe pas.
+
+  /user:
+    post:
+      description: Ajouter un nouvel utilisateur.
+      body:
+        application/json:
+          type: NouvelUtilisateur
+          example:
+            utilisateur: Samuel de Champlain
+            courriel: samuel_dechamplain@hotmail.com
+            quartiers_a_surveiller: Beaurivage,Est
+            mot_de_passe: jaimelesponts!
+      responses:
+        201:
+          description: L'utilisateur a été créé avec succès.
+          body:
+            application/json:
+              type: UtilisateurExistant
+              example:
+                id: 2
+                utilisateur: Bob Lebricoleur
+                hashed_password: 021937u0438hbngdsakjn
+                courriel: bobby@lebricoleur.ca
+                quartiers_a_surveiller: Est,Anjou
+                salt: 90783r6y7btfadc7adsc
+                pic_id:
+
+
+

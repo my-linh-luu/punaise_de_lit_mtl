@@ -1,39 +1,70 @@
 {%extends "layout.html" %}
 {%block content%}
-<table class="table-striped">
-  <tr>
-      <th>No déclaration</th>
-      <th>Date déclaration</th>
-      <th>Date inspection préalable</th>
-      <th>Nbr extermination</th>
-      <th>Date début traitement</th>
-      <th>Date fin traitement</th>
-      <th>No quartier</th>
-      <th>Nom quartier</th>
-      <th>Nom arrondissement</th>
-      <th>Coordonnée X</th>
-      <th>Coordonnée Y</th>
-      <th>Longitude</th>
-      <th>Latitude</th>
-  </tr>
-  <tr>
-      {% for declaration in recherche %}
-      <tr>
-          <td>{{declaration.no_declaration}}</td>
-          <td>{{declaration.date_declaration}}</td>
-          <td>{{declaration.date_insp_vispre}}</td>
-          <td>{{declaration.nbr_extermin}}</td>
-          <td>{{declaration.date_debut_trait}}</td>
-          <td>{{declaration.date_fin_trait}}</td>
-          <td>{{declaration.no_qr}}</td>
-          <td>{{declaration.nom_qr}}</td>
-          <td>{{declaration.nom_arr}}</td>
-          <td>{{declaration.coord_x}}</td>
-          <td>{{declaration.coord_y}}</td>
-          <td>{{declaration.longitude}}</td>
-          <td>{{declaration.latitude}}</td>
-      </tr>
-      {% endfor %}
-  </tr>
-</table>
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            {%if session %}
+                <nav class="navbar navbar-light navbar-expand-lg">
+                    <div class="container-fluid">
+                        <ul>
+                            <li><a href="/">Accueil</a></li>
+                            <li><a href="/declaration">Faire une déclaration</a></li>
+                            <li><a href="/modification">Modifier les quartiers à surveiller</a> </li>
+                            <li><a href="/upload_photo">Ajouter une photo de profil</a></li>
+                            <li><a href="/logout">Se déconnecter</a></li>
+                        </ul>
+                    </div>
+                </nav>
+    {% else %}
+    <nav class="navbar navbar-light navbar-expand-lg">
+        <div class="container-fluid">
+            <ul>
+              <li><a href="/">Accueil</a></li>
+              <li><a href="/declaration">Faire une déclaration</a></li>
+              <li ><a href="/login">Se connecter</a></li>
+            </ul>
+        </div>
+    </nav>
+    {% endif %}
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-sm-11">
+            <table class="table-bordered table-hover">
+              <tr>
+                  <th>No déclaration</th>
+                  <th>Date déclaration</th>
+                  <th>Date inspection préalable</th>
+                  <th>Nbr extermination</th>
+                  <th>Date début traitement</th>
+                  <th>Date fin traitement</th>
+                  <th>No quartier</th>
+                  <th>Nom quartier</th>
+                  <th>Nom arrondissement</th>
+                  <th>Coordonnée X</th>
+                  <th>Coordonnée Y</th>
+                  <th>Longitude</th>
+                  <th>Latitude</th>
+              </tr>
+              <tr>
+                  {% for declaration in recherche %}
+                  <tr>
+                      <td>{{declaration.no_declaration}}</td>
+                      <td>{{declaration.date_declaration}}</td>
+                      <td>{{declaration.date_insp_vispre}}</td>
+                      <td>{{declaration.nbr_extermin}}</td>
+                      <td>{{declaration.date_debut_trait}}</td>
+                      <td>{{declaration.date_fin_trait}}</td>
+                      <td>{{declaration.no_qr}}</td>
+                      <td>{{declaration.nom_qr}}</td>
+                      <td>{{declaration.nom_arr}}</td>
+                      <td>{{declaration.coord_x}}</td>
+                      <td>{{declaration.coord_y}}</td>
+                      <td>{{declaration.longitude}}</td>
+                      <td>{{declaration.latitude}}</td>
+                  </tr>
+                  {% endfor %}
+              </tr>
+            </table>
+        </div>
+    </div>
 {% endblock %}

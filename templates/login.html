@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+    <nav class="navbar navbar-light navbar-expand-lg">
+        <div class="container-fluid">
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/declaration">Faire une déclaration</a></li>
+          <li ><a href="/login">Se connecter</a></li>
+        </ul>
+        </div>
+    </nav>
+    <div class="row justify-content-center">
+        <div class="row g-3">
+            <h1>Se connecter</h1>
+        </div>
+    </div><br>
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <span id="error_login"></span>
+            {%if error%}
+                <span>{{error}}</span>
+            {%endif%}
+        </div>
+    </div>
+    <form method="post" action="/login">
+        <div class="row justify-content-center">
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <label for="username">Nom d'utilisateur: </label>
+                    <input type="text" class="form-control" name="username" id="username" value="{{ request.form['username'] }}">
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <label for="password">Mot de passe: </label>
+                    <input type="password" class="form-control" name="mot_de_passe" id="password" value="{{ request.form['mot_de_passe'] }}">
+                </div>
+            </div>
+        </div><br>
+            <div class="col-12 btn-toolbar">
+                <button type="submit" class="btn btn-outline-primary mx-auto d-block">Connecter</button>
+            </div>
+    </form><br>
+    <div class="creer_profil row justify-content-center">
+      <p>Première fois? <a href="/new_user">Créez un profil</a></p>
+    </div>
+{% endblock %}
