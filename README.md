@@ -1,6 +1,27 @@
 # Recherche de données sur les exterminations de punaises de lit à Montréal 
 
-Ce site permet d'avoir accès en temps réel aux données disponibles sur les exterminations de punaises de lit à Montréal. Il met à la disposition de l'utilisateur une bare de recherche qui lui permet de rechercher les informations déclarations émises selon des quartiers précis. Le site permet également à un utilisateur de s'inscrire dans
+Ce site permet d'avoir accès en temps réel aux données disponibles sur les exterminations de punaises de lit à Montréal. Il met à la disposition de l'utilisateur différents outils qui lui permette de rechercher les informations sur les déclarations émises selon des quartiers précis. L'utilisateur peut également préciser sa recherche en ajoutant des quartiers spécifiques à surveiller.
+
+![accueil](static/pictures/accueil.png)
+
+Voici un exemple de résultat pour la recherche de l'arrondissement d'Anjou : 
+
+![recherche](static/pictures/recherche.png)
+
+Voici un autre résultat pour une recherche selon une date précise, toujours dans l'arrondissement d'Anjou, un tableau apparaît sur la même page pour les recherches par date : 
+
+![resultat](static/pictures/resultat.png)
+
+Un utilisateur peut également décider d'envoyer une déclaration d'extermination à notre base de données personnelles : 
+
+![formulaire](static/pictures/formulaire.png)
+
+Enfin, un utilisateur peut créer un compte afin de débloquer différentes fonctionnalités notamment l'ajout d'une photo de profil au compte ou la modification des quartiers à surveiller.
+
+![modification](static/pictures/modification.png)
+![profile](static/pictures/profil.png)
+
+
 
 # Suivre ces étapes au lancement du programme
 
