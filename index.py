@@ -12,8 +12,8 @@ import uuid
 import datetime
 import re
 
-from .database import Database
-from .schemas import *
+from .db.database import Database
+from .doc.schemas import *
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -119,7 +119,7 @@ def accueil():
                 # ne rentrera pas dans cette condition
                 return render_template("accueil.html",
                                        error="Aucun résultat correspondant"
-                                             "à votre recherche.",
+                                             " à votre recherche.",
                                        quartiers=quartiers,
                                        session=session)
         return redirect(url_for('get_declarations_by_qr_arr',

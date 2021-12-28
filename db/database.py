@@ -1,6 +1,6 @@
 import sqlite3
 from datetime import datetime
-from .declaration import Declaration
+from ..declaration import Declaration
 
 
 # Cette classe définie les fonctions qui permettent d'accéder à la base de

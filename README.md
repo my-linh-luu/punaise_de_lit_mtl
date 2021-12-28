@@ -1,3 +1,7 @@
+# Recherche de données sur les exterminations de punaises de lit à Montréal 
+
+Ce site permet d'avoir accès en temps réel aux données disponibles sur les exterminations de punaises de lit à Montréal. Il met à la disposition de l'utilisateur une bare de recherche qui lui permet de rechercher les informations déclarations émises selon des quartiers précis. Le site permet également à un utilisateur de s'inscrire dans
+
 # Suivre ces étapes au lancement du programme
 
 #### 1. Préalables au bon fonctionnement du site
