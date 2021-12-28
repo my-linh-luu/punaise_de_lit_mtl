@@ -18,6 +18,10 @@ Un utilisateur peut également décider d'envoyer une déclaration d'exterminati
 
 Enfin, un utilisateur peut créer un compte afin de débloquer différentes fonctionnalités notamment l'ajout d'une photo de profil au compte ou la modification des quartiers à surveiller.
 
+![modification](static/pictures/modification.png)
+![profile](static/pictures/profil.png)
+
+
 
 # Suivre ces étapes au lancement du programme
 
